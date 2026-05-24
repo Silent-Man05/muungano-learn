@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muungano Learn — Elimu ya Muungano wa Tanzania</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#1a8a2e;--green-light:#e8f5e9;--green-dark:#0d5c1e;
+  --blue:#1a56a0;--blue-light:#e3f0ff;--blue-dark:#0c3570;
+  --yellow:#f5c518;--yellow-light:#fffbe6;--yellow-dark:#c49a10;
+  --bg:#f9f8f4;--white:#ffffff;--text:#1a1a1a;--muted:#6b7280;
+  --border:#e5e7eb;--radius:12px;--radius-lg:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+
+/* NAV */
+nav{background:var(--blue-dark);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.nav-left{display:flex;align-items:center;gap:12px}
+.nav-flag{display:flex;height:18px;width:32px;border-radius:3px;overflow:hidden}
+.nav-flag div{flex:1}
+.f-b{background:#1a56a0}.f-y{background:#f5c518}.f-g{background:#1a8a2e}
+.nav-title{font-family:'Playfair Display',serif;color:#fff;font-size:18px;letter-spacing:0.5px}
+.nav-links{display:flex;gap:4px}
+.nav-links a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:13px;padding:6px 14px;border-radius:8px;transition:all 0.2s}
+.nav-links a:hover{background:rgba(255,255,255,0.12);color:#fff}
+
+/* HERO */
+.hero{background:var(--blue-dark);padding:64px 32px 80px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;left:-60px;width:300px;height:300px;background:var(--green);border-radius:50%;opacity:0.08}
+.hero::after{content:'';position:absolute;bottom:-80px;right:-40px;width:400px;height:400px;background:var(--yellow);border-radius:50%;opacity:0.06}
+.hero-badge{display:inline-block;background:var(--yellow);color:var(--blue-dark);font-size:12px;font-weight:500;padding:5px 16px;border-radius:20px;margin-bottom:20px;letter-spacing:1px;text-transform:uppercase}
+.hero h1{font-family:'Playfair Display',serif;color:#fff;font-size:48px;line-height:1.15;margin-bottom:16px;position:relative;z-index:1}
+.hero h1 span{color:var(--yellow)}
+.hero p{color:rgba(255,255,255,0.72);font-size:16px;max-width:520px;margin:0 auto 36px;position:relative;z-index:1}
+.hero-stats{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;position:relative;z-index:1}
+.stat-card{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius);padding:16px 28px;text-align:center;min-width:120px}
+.stat-num{font-family:'Playfair Display',serif;color:var(--yellow);font-size:28px;font-weight:700}
+.stat-lbl{color:rgba(255,255,255,0.6);font-size:12px;margin-top:2px}
+.hero-scroll{display:flex;justify-content:center;gap:12px;margin-top:40px;flex-wrap:wrap;position:relative;z-index:1}
+.btn-primary{background:var(--yellow);color:var(--blue-dark);font-weight:500;font-size:14px;padding:12px 28px;border-radius:30px;text-decoration:none;border:none;cursor:pointer;transition:all 0.2s;display:inline-block}
+.btn-primary:hover{background:#e0b010;transform:translateY(-1px)}
+.btn-outline{background:transparent;color:#fff;font-weight:500;font-size:14px;padding:12px 28px;border-radius:30px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;display:inline-block}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,0.08)}
+
+/* SECTIONS */
+section{padding:64px 32px;max-width:1000px;margin:0 auto}
+.section-label{font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+.section-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;margin-bottom:8px;color:var(--text)}
+.section-sub{color:var(--muted);font-size:15px;max-width:560px;margin-bottom:40px}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:32px}
+.timeline::before{content:'';position:absolute;left:12px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--blue),var(--green))}
+.t-item{position:relative;margin-bottom:36px;padding-left:24px}
+.t-dot{position:absolute;left:-32px;top:4px;width:24px;height:24px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;border:3px solid var(--bg)}
+.t-dot.green{background:var(--green)}
+.t-dot.yellow{background:var(--yellow)}
+.t-dot svg{width:10px;height:10px;fill:#fff}
+.t-year{font-size:12px;font-weight:500;color:var(--blue);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.t-year.green{color:var(--green)}
+.t-title{font-weight:500;font-size:16px;margin-bottom:4px}
+.t-desc{color:var(--muted);font-size:14px;line-height:1.6}
+.t-tag{display:inline-block;background:var(--blue-light);color:var(--blue-dark);font-size:11px;padding:3px 10px;border-radius:20px;margin-top:6px;font-weight:500}
+.t-tag.green{background:var(--green-light);color:var(--green-dark)}
+
+/* QUIZ */
+.quiz-wrap{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;max-width:680px}
+.quiz-progress-bar{height:6px;background:var(--border);border-radius:3px;margin-bottom:28px;overflow:hidden}
+.quiz-progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:3px;transition:width 0.4s ease}
+.quiz-num{font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:500}
+.quiz-q{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:24px;line-height:1.4;color:var(--text)}
+.quiz-options{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.quiz-opt{padding:14px 18px;border:1.5px solid var(--border);border-radius:var(--radius);cursor:pointer;font-size:14px;transition:all 0.2s;text-align:left;background:var(--white);color:var(--text);width:100%}
+.quiz-opt:hover{border-color:var(--blue);background:var(--blue-light);color:var(--blue-dark)}
+.quiz-opt.correct{border-color:var(--green);background:var(--green-light);color:var(--green-dark);pointer-events:none}
+.quiz-opt.wrong{border-color:#e53e3e;background:#fff5f5;color:#c53030;pointer-events:none}
+.quiz-opt.reveal{pointer-events:none;opacity:0.5}
+.quiz-feedback{padding:14px 18px;border-radius:var(--radius);font-size:14px;margin-bottom:16px;display:none;line-height:1.5}
+.quiz-feedback.show{display:block}
+.quiz-feedback.ok{background:var(--green-light);color:var(--green-dark);border:1px solid #a8d5b0}
+.quiz-feedback.no{background:#fff5f5;color:#c53030;border:1px solid #feb2b2}
+.quiz-nav{display:flex;align-items:center;justify-content:space-between}
+.quiz-score{font-size:13px;font-weight:500;color:var(--muted)}
+.btn-next{background:var(--blue);color:#fff;font-weight:500;font-size:14px;padding:10px 24px;border-radius:30px;border:none;cursor:pointer;transition:all 0.2s;display:none}
+.btn-next.show{display:inline-block}
+.btn-next:hover{background:var(--blue-dark)}
+.quiz-result{text-align:center;padding:20px 0}
+.quiz-result-score{font-family:'Playfair Display',serif;font-size:56px;color:var(--green);font-weight:900}
+.quiz-result-lbl{font-size:16px;color:var(--muted);margin-bottom:24px}
+.quiz-result-msg{font-size:15px;margin-bottom:24px;color:var(--text)}
+
+/* CHATBOT */
+.chat-container{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;max-width:680px}
+.chat-top{background:var(--green-dark);padding:16px 20px;display:flex;align-items:center;gap:12px}
+.bot-ava{width:40px;height:40px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.chat-top-info{flex:1}
+.chat-top-name{color:#fff;font-weight:500;font-size:15px}
+.chat-top-sub{color:rgba(255,255,255,0.65);font-size:12px}
+.online{display:flex;align-items:center;gap:5px;font-size:12px;color:#9FE1CB}
+.online-dot{width:8px;height:8px;border-radius:50%;background:#9FE1CB;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+.chat-msgs{min-height:260px;max-height:320px;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:12px;background:#f7f9fb}
+.msg{max-width:82%;padding:11px 15px;border-radius:14px;font-size:14px;line-height:1.55}
+.msg.bot{background:#fff;border:1px solid var(--border);align-self:flex-start;border-bottom-left-radius:4px;color:var(--text)}
+.msg.user{background:var(--blue);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.msg.typing{background:#fff;border:1px solid var(--border);align-self:flex-start;color:var(--muted);font-style:italic;font-size:13px}
+.chat-chips{display:flex;flex-wrap:wrap;gap:6px;padding:12px 16px;background:var(--white);border-top:1px solid var(--border)}
+.chip{background:var(--blue-light);color:var(--blue-dark);font-size:12px;padding:6px 14px;border-radius:20px;cursor:pointer;border:none;transition:all 0.15s;font-family:'DM Sans',sans-serif;font-weight:500}
+.chip:hover{background:#c5daf7}
+.chat-input-row{display:flex;gap:8px;padding:12px 16px;background:var(--white);border-top:1px solid var(--border)}
+.chat-input-row input{flex:1;border:1.5px solid var(--border);border-radius:30px;padding:9px 16px;font-size:14px;background:var(--bg);outline:none;font-family:'DM Sans',sans-serif;color:var(--text)}
+.chat-input-row input:focus{border-color:var(--blue)}
+.send-btn{background:var(--blue);color:#fff;border:none;border-radius:50%;width:38px;height:38px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s}
+.send-btn:hover{background:var(--blue-dark)}
+.send-btn svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* FOOTER */
+footer{background:var(--blue-dark);color:rgba(255,255,255,0.65);text-align:center;padding:32px;font-size:13px}
+footer strong{color:#fff}
+.footer-flags{display:flex;justify-content:center;gap:8px;margin-bottom:12px;align-items:center}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .hero h1{font-size:32px}
+  nav{padding:0 16px}
+  section{padding:48px 16px}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <div class="nav-flag"><div class="f-b"></div><div class="f-y"></div><div class="f-g"></div></div>
+    <span class="nav-title">Muungano Learn</span>
+  </div>
+  <div class="nav-links">
+    <a href="#timeline">Historia</a>
+    <a href="#quiz">Quiz</a>
+    <a href="#chatbot">Msaidizi</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Elimu ya Muungano · Zanzibar 2025</div>
+  <h1>Jifunza Historia ya<br><span>Muungano</span> wa Tanzania</h1>
+  <p>Jukwaa la kisasa la kujifunza historia ya Muungano wa Tanganyika na Zanzibar. Quiz, timeline, na msaidizi wa AI — zote kwa Kiswahili.</p>
+  <div class="hero-stats">
+    <div class="stat-card"><div class="stat-num">1964</div><div class="stat-lbl">Mwaka wa Muungano</div></div>
+    <div class="stat-card"><div class="stat-num">60+</div><div class="stat-lbl">Miaka ya Umoja</div></div>
+    <div class="stat-card"><div class="stat-num">AI</div><div class="stat-lbl">Msaidizi wa Kisasa</div></div>
+  </div>
+  <div class="hero-scroll">
+    <a href="#timeline" class="btn-primary">Angalia Historia</a>
+    <a href="#quiz" class="btn-outline">Cheza Quiz</a>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="section-label">Historia</div>
+  <div class="section-title">Matukio Muhimu ya Muungano</div>
+  <p class="section-sub">Kutoka mapinduzi hadi muungano — safari ya Tanzania nzima</p>
+
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-year">Desemba 1961</div>
+      <div class="t-title">Uhuru wa Tanganyika</div>
+      <div class="t-desc">Tanganyika ilipata uhuru wake kutoka kwa Waingereza chini ya uongozi wa Mwalimu Julius Kambarage Nyerere, ambaye alikuwa Waziri Mkuu wa kwanza.</div>
+      <span class="t-tag">Tanganyika</span>
+    </div>
+    <div class="t-item">
+      <div class="t-dot green"></div>
+      <div class="t-year">Januari 1964</div>
+      <div class="t-title">Mapinduzi ya Zanzibar</div>
+      <div class="t-desc">Mapinduzi ya Zanzibar yalipindua utawala wa Sultani wa Kiarabu. Abeid Amani Karume akawa Rais wa kwanza wa Zanzibar huru.</div>
+      <span class="t-tag green">Zanzibar</span>
+    </div>
+    <div class="t-item">
+      <div class="t-dot yellow" style="background:var(--yellow)"></div>
+      <div class="t-year">Aprili 26, 1964</div>
+      <div class="t-title">Muungano wa Tanzania</div>
+      <div class="t-desc">Tanganyika na Zanzibar ziliungana rasmi kuunda Jamhuri ya Muungano wa Tanzania. Mwalimu Nyerere akawa Rais wa kwanza na Karume akawa Makamu wa Rais.</div>
+      <span class="t-tag" style="background:var(--yellow-light);color:var(--yellow-dark)">Muungano Rasmi</span>
+    </div>
+    <div class="t-item">
+      <div class="t-dot green"></div>
+      <div class="t-year">1977</div>
+      <div class="t-title">Katiba ya Muungano</div>
+      <div class="t-desc">Katiba mpya ya Tanzania ilipitishwa, ikiandika rasmi misingi ya Muungano na kugawana madaraka kati ya Serikali ya Muungano na SMZ.</div>
+      <span class="t-tag green">Kisheria</span>
+    </div>
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-year">Leo — 2025</div>
+      <div class="t-title">Miaka 61 ya Umoja</div>
+      <div class="t-desc">Tanzania inaadhimisha miaka 61 ya Muungano. Umoja huu unaendelea kuwa nguzo kuu ya amani, maendeleo, na utambulisho wa Watanzania wote.</div>
+      <span class="t-tag">Sasa Hivi</span>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" style="background:var(--blue-light);border-radius:24px;max-width:100%;margin:0;padding:64px 32px">
+  <div style="max-width:1000px;margin:0 auto">
+    <div class="section-label">Quiz</div>
+    <div class="section-title">Jaribu Maarifa Yako</div>
+    <p class="section-sub">Maswali 8 kuhusu historia ya Muungano — una uwezo wa kupata alama kamili?</p>
+
+    <div class="quiz-wrap" id="quizBox">
+      <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="qProgress" style="width:12.5%"></div></div>
+      <div id="quizContent"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHATBOT -->
+<section id="chatbot">
+  <div class="section-label">Msaidizi wa AI</div>
+  <div class="section-title">Uliza Chochote</div>
+  <p class="section-sub">Msaidizi wetu wa AI anajibu maswali yote ya historia ya Muungano kwa Kiswahili fasaha.</p>
+
+  <div class="chat-container">
+    <div class="chat-top">
+      <div class="bot-ava">🤖</div>
+      <div class="chat-top-info">
+        <div class="chat-top-name">Msaidizi wa Muungano</div>
+        <div class="chat-top-sub">Mtalamu wa Historia ya Tanzania</div>
+      </div>
+      <div class="online"><div class="online-dot"></div>Mtandaoni</div>
+    </div>
+    <div class="chat-msgs" id="chatMsgs">
+      <div class="msg bot">Habari! Mimi ni msaidizi wako wa historia ya Muungano wa Tanzania. Niulize swali lolote — kuhusu viongozi, tarehe, sababu za Muungano, au umuhimu wake. Niko hapa kukusaidia!</div>
+    </div>
+    <div class="chat-chips">
+      <button class="chip" onclick="askChip('Kwa nini Muungano ulifanywa?')">Kwa nini Muungano ulifanywa?</button>
+      <button class="chip" onclick="askChip('Mwalimu Nyerere alikuwa nani?')">Mwalimu Nyerere ni nani?</button>
+      <button class="chip" onclick="askChip('Faida za Muungano kwa vijana wa Zanzibar?')">Faida kwa vijana?</button>
+      <button class="chip" onclick="askChip('Aprili 26 inaadhimishwa vipi?')">Aprili 26 ni nini?</button>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" id="chatInput" placeholder="Andika swali lako hapa..." onkeydown="if(event.key==='Enter')sendChat()"/>
+      <button class="send-btn" onclick="sendChat()" aria-label="Tuma">
+        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-flags">
+    <div class="nav-flag" style="height:16px;width:28px;border-radius:2px;overflow:hidden;display:flex"><div class="f-b"></div><div class="f-y"></div><div class="f-g"></div></div>
+    <strong>Muungano Learn</strong>
+    <div class="nav-flag" style="height:16px;width:28px;border-radius:2px;overflow:hidden;display:flex"><div class="f-b"></div><div class="f-y"></div><div class="f-g"></div></div>
+  </div>
+  <p>Mradi wa Elimu ya Muungano · Elimu ya Muungano Ubunifu Challenge 2025</p>
+  <p style="margin-top:6px;font-size:12px">Ofisi ya Makamu wa Rais – Muungano na Mazingira · Zanzibar</p>
+</footer>
+
+<script>
+const questions = [
+  {q:"Muungano wa Tanzania ulifanyika tarehe gani?",opts:["Januari 12, 1964","Aprili 26, 1964","Desemba 9, 1961","Julai 7, 1954"],ans:1,exp:"Aprili 26, 1964 ni siku ya kihistoria ambayo Tanganyika na Zanzibar ziliungana rasmi kuunda Tanzania."},
+  {q:"Nani alikuwa Rais wa kwanza wa Tanzania baada ya Muungano?",opts:["Abeid Amani Karume","Julius Kambarage Nyerere","Ali Hassan Mwinyi","Benjamin Mkapa"],ans:1,exp:"Mwalimu Julius Nyerere alikuwa Rais wa kwanza wa Tanzania. Karume akawa Makamu wa Rais."},
+  {q:"Jina kamili la Tanzania limetokana na nini?",opts:["Maneno ya Kiarabu","Tanganyika na Zanzibar","Lugha ya Kizulu","Jina la mto"],ans:1,exp:"Tanzania ni muunganiko wa majina mawili: TANganyika na ZANzibar — kuonyesha umoja wa mataifa mawili."},
+  {q:"Mapinduzi ya Zanzibar yalitokea mwaka gani?",opts:["1961","1963","1964","1967"],ans:2,exp:"Mapinduzi ya Zanzibar yalitokea Januari 12, 1964 — miezi mitatu kabla ya Muungano."},
+  {q:"Abeid Amani Karume alikuwa nani katika Muungano?",opts:["Waziri Mkuu","Makamu wa Rais wa kwanza","Spika wa Bunge","Gavana"],ans:1,exp:"Karume alikuwa Rais wa Zanzibar na akawa Makamu wa Rais wa kwanza wa Tanzania Muungano."},
+  {q:"Tanganyika ilipata uhuru wake kutoka kwa nani?",opts:["Wafaransa","Wabelgiji","Waingereza","Wajerumani"],ans:2,exp:"Tanganyika ilipata uhuru kutoka kwa Uingereza tarehe Desemba 9, 1961."},
+  {q:"Katiba ya Muungano wa Tanzania ilipitishwa mwaka gani?",opts:["1964","1970","1977","1984"],ans:2,exp:"Katiba mpya ya Tanzania ilipitishwa mwaka 1977, ikiandika misingi ya kisheria ya Muungano."},
+  {q:"Muungano wa Tanzania una umuhimu gani kwa Afrika?",opts:["Ni Muungano wa kwanza Afrika","Ulionyesha kuwa mataifa yanaweza kuungana kwa amani","Ulisaidia kupigana vita","Uliunda sarafu moja ya Afrika"],ans:1,exp:"Muungano wa Tanzania ni mfano wa kihistoria duniani — kuonyesha kuwa mataifa yanaweza kuungana kwa upole na amani, bila vita."}
+];
+
+let cur=0, score=0, answered=false;
+const chatHistory=[];
+
+function renderQ(){
+  const q=questions[cur];
+  const pct=((cur+1)/questions.length*100).toFixed(0);
+  document.getElementById('qProgress').style.width=pct+'%';
+  document.getElementById('quizContent').innerHTML=`
+    <div class="quiz-num">Swali ${cur+1} kati ya ${questions.length}</div>
+    <div class="quiz-q">${q.q}</div>
+    <div class="quiz-options">${q.opts.map((o,i)=>`<button class="quiz-opt" onclick="pickAns(${i})">${o}</button>`).join('')}</div>
+    <div class="quiz-feedback" id="qFeedback"></div>
+    <div class="quiz-nav">
+      <div class="quiz-score">Alama: ${score}/${cur}</div>
+      <button class="btn-next" id="btnNext" onclick="nextQ()">${cur<questions.length-1?'Swali Lijalo →':'Angalia Matokeo'}</button>
+    </div>`;
+  answered=false;
+}
+
+function pickAns(i){
+  if(answered)return;
+  answered=true;
+  const q=questions[cur];
+  const opts=document.querySelectorAll('.quiz-opt');
+  const fb=document.getElementById('qFeedback');
+  opts.forEach((o,idx)=>{
+    if(idx===q.ans)o.classList.add('correct');
+    else if(idx===i&&i!==q.ans)o.classList.add('wrong');
+    else o.classList.add('reveal');
+  });
+  if(i===q.ans){score++;fb.className='quiz-feedback show ok';fb.textContent='Sahihi kabisa! '+q.exp;}
+  else{fb.className='quiz-feedback show no';fb.textContent='Jibu sahihi ni: '+q.opts[q.ans]+'. '+q.exp;}
+  document.getElementById('btnNext').classList.add('show');
+}
+
+function nextQ(){
+  cur++;
+  if(cur>=questions.length){showResult();return;}
+  renderQ();
+}
+
+function showResult(){
+  const pct=Math.round(score/questions.length*100);
+  let msg='';
+  if(pct>=88)msg='Bora sana! Wewe ni mtaalamu wa historia ya Muungano. Hongera!';
+  else if(pct>=63)msg='Vizuri! Unajua historia nzuri. Jaribu tena kupata alama kamili.';
+  else msg='Endelea kujifunza! Soma timeline juu ya ukurasa huu kisha jaribu tena.';
+  document.getElementById('quizContent').innerHTML=`
+    <div class="quiz-result">
+      <div class="quiz-result-score">${score}/${questions.length}</div>
+      <div class="quiz-result-lbl">${pct}% — ${pct>=75?'Umefaulu!':'Jaribu tena'}</div>
+      <div class="quiz-result-msg">${msg}</div>
+      <button class="btn-primary" onclick="cur=0;score=0;renderQ()">Cheza Tena</button>
+    </div>`;
+}
+
+renderQ();
+
+async function sendChat(){
+  const inp=document.getElementById('chatInput');
+  const txt=inp.value.trim();
+  if(!txt)return;
+  inp.value='';
+  addMsg(txt,'user');
+  chatHistory.push({role:'user',content:txt});
+  const typing=addMsg('Anaandika...','typing');
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:400,
+        system:'Wewe ni msaidizi mtaalamu wa historia ya Muungano wa Tanzania (Muungano wa Tanganyika na Zanzibar 1964). Jibu kwa Kiswahili fasaha na kwa ufupi (mistari 2-4 tu). Kuwa na msisimko na uvutie vijana wa vyuo vikuu. Hakuna orodha ndefu.',
+        messages:chatHistory.slice(-8)
+      })
+    });
+    const data=await res.json();
+    const reply=data.content&&data.content[0]?data.content[0].text:'Samahani, kuna tatizo. Jaribu tena.';
+    typing.remove();
+    addMsg(reply,'bot');
+    chatHistory.push({role:'assistant',content:reply});
+  }catch(e){
+    typing.remove();
+    addMsg('Samahani, kuna tatizo la mtandao. Jaribu tena.','bot');
+  }
+}
+
+function addMsg(txt,type){
+  const msgs=document.getElementById('chatMsgs');
+  const d=document.createElement('div');
+  d.className='msg '+type;
+  d.textContent=txt;
+  msgs.appendChild(d);
+  msgs.scrollTop=msgs.scrollHeight;
+  return d;
+}
+
+function askChip(q){
+  document.getElementById('chatInput').value=q;
+  sendChat();
+}
+</script>
+</body>
+</html>
